@@ -1,8 +1,9 @@
+// App.js - Modified for split layout
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import LoginSignup from './LoginSignup';
-import DialectTranslator from './DialectTranslator'; // Rename your current App component to DialectTranslator
+import DialectTranslator from './DialectTranslator'; // Renamed from original App
 
 function App() {
   return (
