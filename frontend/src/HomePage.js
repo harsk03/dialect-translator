@@ -75,6 +75,11 @@ const HomePage = ({ section }) => {
     return () => clearInterval(interval);
   }, [appScreenshots.length]);
 
+  // Initialize the carousel on load
+  // useEffect(() => {
+  //   rotateCards(activeDeveloper);
+  // }, [activeDeveloper]);
+
   // Navigation functions
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % appScreenshots.length);
@@ -84,20 +89,74 @@ const HomePage = ({ section }) => {
     setActiveSlide((prev) => (prev - 1 + appScreenshots.length) % appScreenshots.length);
   };
 
-  const nextDeveloper = () => {
-    setActiveDeveloper((prev) => (prev + 1) % developers.length);
-  };
+  // Updated navigation functions for the developer carousel
+const nextDeveloper = () => {
+  const newIndex = (activeDeveloper + 1) % developers.length;
+  setActiveDeveloper(newIndex);
+  updateCardPositions(newIndex);
+};
 
-  const prevDeveloper = () => {
-    setActiveDeveloper((prev) => (prev - 1 + developers.length) % developers.length);
-  };
+const prevDeveloper = () => {
+  const newIndex = (activeDeveloper - 1 + developers.length) % developers.length;
+  setActiveDeveloper(newIndex);
+  updateCardPositions(newIndex);
+};
 
+// Function to update card positions
+const updateCardPositions = (activeIndex) => {
+  const cards = document.querySelectorAll('.developer-card');
+  const totalCards = cards.length;
+  
+  cards.forEach((card, index) => {
+    // Remove active class from all cards
+    card.classList.remove('active');
+    
+    // Calculate position based on relation to active card
+    const distance = calculateDistance(index, activeIndex, totalCards);
+    
+    // Apply different transformations based on distance
+    if (distance === 0) {
+      // Active card
+      card.style.transform = 'translate(-50%, -50%) translateZ(100px) scale(1.1)';
+      card.style.opacity = '1';
+      card.style.filter = 'blur(0)';
+      card.classList.add('active');
+    } else if (distance === 1 || distance === -1) {
+      // Adjacent cards - partially visible
+      const xOffset = distance === 1 ? '10%' : '-110%';
+      card.style.transform = `translate(${xOffset}, -50%) translateZ(-50px) scale(0.8)`;
+      card.style.opacity = '0.85';
+      card.style.filter = 'blur(1px)';
+    } else {
+      // Other cards - hidden or minimally visible
+      const xOffset = distance > 0 ? '120%' : '-220%';
+      card.style.transform = `translate(${xOffset}, -50%) translateZ(-100px) scale(0.6)`;
+      card.style.opacity = '0.6';
+      card.style.filter = 'blur(2px)';
+    }
+  });
+};
+
+// Helper function to calculate shortest distance between indices in a circular array
+const calculateDistance = (index1, index2, length) => {
+  const directDistance = index2 - index1;
+  const wrappedDistance = index2 < index1 ? index2 + length - index1 : index2 - length - index1;
+  
+  return Math.abs(directDistance) < Math.abs(wrappedDistance) ? directDistance : wrappedDistance;
+};
+
+// Initialize the carousel on load
+useEffect(() => {
+  
+  updateCardPositions(activeDeveloper);
+  // eslint-disable-next-line
+}, [activeDeveloper]);
   return (
     <div className="home-page">
       {/* Navigation */}
       <nav className="navbar">
         <div className="navbar-left">
-          <img src="/images/dialect-icon.png" alt="Cultural Dialect Translator" className="logo" />
+          <img src="/images/icon.png" alt="Cultural Dialect Translator" className="logo" />
           <h1>Cultural Dialect Translator</h1>
         </div>
         <div className="navbar-right">
@@ -192,35 +251,45 @@ const HomePage = ({ section }) => {
       </section>
 
       {/* Developer Section */}
-      <section className="developers-section">
-        <h2>Meet Our Team</h2>
-        <div className="developer-carousel">
-          <button onClick={prevDeveloper} className="carousel-button dev-prev"><BsChevronLeft /></button>
-          <div className="developer-cards">
-            {developers.map((developer, index) => (
-              <div 
-                key={developer.id} 
-                className={`developer-card ${index === activeDeveloper ? 'active' : ''}`}
-                style={{transform: `translateX(${(index - activeDeveloper) * 110}%)`}}
-              >
-                <div className="developer-image">
-                  <img src={developer.image} alt={developer.name} />
-                </div>
-                <h3>{developer.name}</h3>
-                <p className="developer-role">{developer.role}</p>
-                <p className="developer-bio">{developer.bio}</p>
-                <div className="developer-socials">
-                  <a href={developer.socials.github} target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-                  <a href={developer.socials.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-                  
-                </div>
-              </div>
-            ))}
+<section className="developers-section">
+  <h2>Meet Our Team</h2>
+  <div className="developer-carousel">
+    <button onClick={prevDeveloper} className="carousel-button2 dev-prev"><BsChevronLeft /></button>
+    <div className="developer-cards">
+      {developers.map((developer, index) => (
+        <div 
+          key={developer.id} 
+          className={`developer-card ${index === activeDeveloper ? 'active' : ''}`}
+          // Note: We're managing styles via JavaScript now, so we don't need inline styles here
+        >
+          <div className="developer-image">
+            <img src={developer.image} alt={developer.name} />
           </div>
-          <button onClick={nextDeveloper} className="carousel-button dev-next"><BsChevronRight /></button>
+          <h3>{developer.name}</h3>
+          <p className="developer-role">{developer.role}</p>
+          <p className="developer-bio">{developer.bio}</p>
+          <div className="developer-socials">
+            <a href={developer.socials.github} target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+            <a href={developer.socials.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+          </div>
         </div>
-      </section>
-
+      ))}
+    </div>
+    <button onClick={nextDeveloper} className="carousel-button2 dev-next"><BsChevronRight /></button>
+    <div className="carousel-indicators2">
+      {developers.map((_, index) => (
+        <span 
+          key={index} 
+          className={`indicator2 ${index === activeDeveloper ? 'active' : ''}`}
+          onClick={() => {
+            setActiveDeveloper(index);
+            updateCardPositions(index);
+          }}
+        ></span>
+      ))}
+    </div>
+  </div>
+</section>
       {/* Map Section */}
       <section className="map-section">
         <h2>Linguistic Landscape of India: The Serampore Missionary Map (1822)</h2>
@@ -269,15 +338,14 @@ const HomePage = ({ section }) => {
               <li><Link to="/documentation">Documentation</Link></li>
               <li><Link to="/api">API Reference</Link></li>
               <li><Link to="/tech-stack">Tech Stack</Link></li>
-              <li><Link to="/research">Research Paper</Link></li>
             </ul>
           </div>
           <div className="footer-column">
             <h4>Contact Us</h4>
             <ul className="contact-info">
               <li>contact@dialecttranslator.com</li>
-              <li>+91 98765 43210</li>
-              <li>Bengaluru, India</li>
+              <li>+91 XXXXX XXXXX</li>
+              <li>Pune, India</li>
             </ul>
           </div>
         </div>

@@ -242,28 +242,36 @@
     border-radius: 50%;
     margin-bottom: 1.5rem;
     background-position: center;
-    background-size: 60%;
+    background-size: cover;
     background-repeat: no-repeat;
-  }
-  
-  .dialect-icon {
-    background-color: rgba(74, 111, 165, 0.1);
-    background-image: url('https://via.placeholder.com/50');
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.dialect-icon {
+    background-color: rgb(255, 255, 255);
+    background-image: url('/public/images/dialect-icon.jpg');
+    background-size: 90%; /* Reduce the image size */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
   
   .realtime-icon {
-    background-color: rgba(255, 126, 95, 0.1);
-    background-image: url('https://via.placeholder.com/50');
+    background-color: rgb(255, 255, 255);
+    background-image: url('/public/images/realtime-icon.jpg');
   }
   
   .languages-icon {
-    background-color: rgba(254, 180, 123, 0.1);
-    background-image: url('https://via.placeholder.com/50');
+    background-color: rgb(255, 255, 255);
+    background-image: url('/public/images/languages-icon.jpg');
   }
   
   .ai-icon {
-    background-color: rgba(44, 62, 80, 0.1);
-    background-image: url('https://via.placeholder.com/50');
+    background-color: rgb(255, 255, 255);
+    background-image: url('/public/images/ai-icon.jpg');
   }
   
   .feature-card h3 {
@@ -413,127 +421,258 @@
   }
   
   /* Developers Section */
-  .developers-section {
-    padding: 5rem 5%;
-    background-color: white;
-    text-align: center;
-  }
-  
-  .developers-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--primary-dark);
-    position: relative;
-  }
-  
-  .developers-section h2:after {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 3px;
-    background-color: var(--secondary-color);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .developer-carousel {
-    position: relative;
-    padding: 2rem 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .developer-cards {
-    overflow: hidden;
-    width: 100%;
-    height: 450px;
-    position: relative;
-  }
-  
+.developers-section {
+  padding: 5rem 5%;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.developers-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--primary-dark);
+  position: relative;
+}
+
+.developers-section h2:after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.developer-carousel {
+  position: relative;
+  padding: 3rem 0;
+  perspective: 1000px;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: visible;
+}
+
+.developer-cards {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+}
+
+.developer-card {
+  position: absolute;
+  width: 280px;
+  height: 380px;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) translateZ(0);
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  backface-visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Add colored borders to cards */
+.developer-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+  z-index: 1;
+  border-radius: 16px;
+  border: 8px solid #9c5a9c; /* Purple border similar to reference image */
+}
+
+.developer-card.active {
+  z-index: 5;
+  transform: translate(-50%, -50%) translateZ(100px) scale(1.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.developer-card.active:before {
+  border-color: transparent; /* Remove border for active card */
+}
+
+.developer-card:not(.active) {
+  opacity: 0.85;
+  filter: blur(1px);
+}
+
+/* Position adjacent cards so they're partially visible */
+.developer-card:nth-child(3n+1):not(.active) {
+  transform: translate(-110%, -50%) translateZ(-50px) scale(0.8);
+}
+
+.developer-card:nth-child(3n+2):not(.active) {
+  transform: translate(10%, -50%) translateZ(-50px) scale(0.8);
+}
+
+/* For a 4-card setup, adjust the rotation angle */
+.developer-card:nth-child(1):not(.active) {
+  transform: translate(-110%, -50%) translateZ(-50px) scale(0.8);
+}
+
+.developer-card:nth-child(2):not(.active) {
+  transform: translate(10%, -50%) translateZ(-50px) scale(0.8);
+}
+
+.developer-card:nth-child(3):not(.active) {
+  transform: translate(-110%, -50%) translateZ(-50px) scale(0.8);
+}
+
+.developer-card:nth-child(4):not(.active) {
+  transform: translate(10%, -50%) translateZ(-50px) scale(0.8);
+}
+
+.developer-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 5px solid var(--primary-light);
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.developer-image img {
+  width: 70%;
+  height: 110%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.developer-card:hover .developer-image img {
+  transform: scale(1.1);
+}
+
+.developer-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+}
+
+.developer-role {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.developer-bio {
+  margin-bottom: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.developer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.developer-socials a {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+}
+
+.developer-socials a:hover {
+  color: white;
+  background-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.carousel-button2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: #9c5a9c; /* Purple buttons matching the card borders */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.carousel-button:hover {
+  background-color: #8a4a8a; /* Slightly darker on hover */
+  transform: translateY(-50%) scale(1.1);
+}
+
+.dev-prev {
+  left: 5%;
+}
+
+.dev-next {
+  right: 5%;
+}
+
+.carousel-indicators2 {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.indicator2 {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #d4d4d4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background-color: #9c5a9c; /* Purple indicators matching the card borders */
+  transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
   .developer-card {
-    position: absolute;
-    width: 300px;
-    height: 400px;
-    left: 50%;
-    margin-left: -150px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    padding: 2rem;
-    transition: transform 0.5s ease, opacity 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 260px;
+    height: 360px;
   }
   
   .developer-image {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    border: 5px solid var(--primary-light);
   }
-  
-  .developer-image img {
-    width: 70%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .developer-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary-dark);
-  }
-  
-  .developer-role {
-    color: var(--primary-color);
-    font-weight: 500;
-    margin-bottom: 1rem;
-  }
-  
-  .developer-bio {
-    margin-bottom: 1.5rem;
-    color: #666;
-  }
-  
-  .developer-socials {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .developer-socials a {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    transition: var(--transition);
-  }
-  
-  .developer-socials a:hover {
-    color: var(--primary-dark);
-    transform: translateY(-3px);
-  }
-  
-  .dev-prev, .dev-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dev-prev {
-    left: 5%;
-  }
-  
-  .dev-next {
-    right: 5%;
-  }
+}
   
   /* Map Section */
   .map-section {
