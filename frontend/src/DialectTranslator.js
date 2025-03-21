@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './WorkInProgressMessage.css';
 import HomeIcon from '@mui/icons-material/Home';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+// import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MicIcon from '@mui/icons-material/Mic';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
@@ -14,7 +14,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LanguageIcon from '@mui/icons-material/Language';
+
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -133,10 +133,9 @@ function App() {
 
       <div className={`phone-container ${theme}`}>
         <div className="app-header">
-          <BookmarkBorderIcon className="icon" />
+          {/* <BookmarkBorderIcon className="icon" /> */}
           <span className="app-title">
-            <LanguageIcon style={{ marginRight: '8px' }} /> 
-            Dialect Translator
+            <img src="/icon2.ico" alt="Icon" style={{ width: '38px', height: '38px', marginRight: '14px' }} />   Dialect Translator
           </span>
           <div className="right-icons">
             <div className="theme-toggle" onClick={toggleTheme}>
