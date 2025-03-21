@@ -6,7 +6,6 @@ import LoginSign from './LoginSignup';
 import IndiaMap3D from './IndiaMap3D';
 import DialectTranslator from './DialectTranslator';
 
-// Create a combined component for the auth page
 const AuthPage = () => (
   <div className="auth-container">
     <LoginSign />

@@ -1,6 +1,8 @@
 // DialectTranslator.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import './WorkInProgressMessage.css';
+import HomeIcon from '@mui/icons-material/Home';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MicIcon from '@mui/icons-material/Mic';
@@ -24,6 +26,8 @@ function App() {
   const [targetDialect, setTargetDialect] = useState('Standard');
   const [showDialectInfo, setShowDialectInfo] = useState(false);
   const [copyTooltip, setCopyTooltip] = useState('Copy');
+  // eslint-disable-next-line
+  const [showMessage, setShowMessage] = useState(true);
   
   const languages = [
     { name: 'Hindi', dialects: ['Standard', 'Bhojpuri'] },
@@ -98,6 +102,35 @@ function App() {
 
   return (
     <div className="App">
+      
+      {/* Progress Message Bubble*/}
+      <div className={`progress-message ${theme} ${!showMessage ? 'hidden' : ''}`}>
+        
+      <div className="progress-message-content">
+  <div className="progress-indicator">
+    <div className="pulse-dot"></div>
+    <div className="pulse-dot"></div>
+    <div className="pulse-dot"></div>
+  </div>
+  <div className="progress-text">
+    <h3>Development in Progress</h3>
+    <p>Our team is refining dialect translation models to ensure optimal accuracy. Thank you for your patience.</p>
+  </div>
+  <div className="progress-actions">
+    <button className="home-button" onClick={() => window.location.href = '/home'}>
+      <HomeIcon className="home-icon" />
+      Home
+    </button>
+  </div>
+  {/* <div className="progress-close">
+    <CloseIcon 
+      className="close-icon" 
+      onClick={() => setShowMessage(false)} 
+    />
+  </div> */}
+</div>
+      </div>
+
       <div className={`phone-container ${theme}`}>
         <div className="app-header">
           <BookmarkBorderIcon className="icon" />
@@ -251,6 +284,7 @@ function App() {
           </div>
         )}
       </div>
+
     </div>
   );
 }
