@@ -1,7 +1,7 @@
-const express = require('express');
-const axios = require('axios'); // If calling an external API for translations
-const router = express.Router();
+import express from 'express';
+import axios from 'axios'; 
 
+const router = express.Router();
 
 router.post('/', async (req, res) => {
     const { text, sourceLang, targetLang } = req.body;
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        //Example, will be replaced by corpus later
+        
         const translatedText = `Translated (${sourceLang} -> ${targetLang}): ${text}`;
 
         res.json({ translatedText });
@@ -20,4 +20,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

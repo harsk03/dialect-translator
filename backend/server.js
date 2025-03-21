@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
-import translateRoutes from './routes/translateRoutes.js';
+import translateRoutes from './routes/translateRoute.js';
 
 dotenv.config();
 const app = express();
