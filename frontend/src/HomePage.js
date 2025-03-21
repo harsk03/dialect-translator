@@ -344,7 +344,7 @@ useEffect(() => {
             <h4>Contact Us</h4>
             <ul className="contact-info">
               <li>contact@dialecttranslator.com</li>
-              <li>+91 XXXXX XXXXX</li>
+              <li>+91 77198 46202</li>
               <li>Pune, India</li>
             </ul>
           </div>
