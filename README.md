@@ -1,4 +1,5 @@
-# ![Dialecta Logo](frontend/public/icon3.png) Dialecta - Cultural Dialect Translator
+# <img src="frontend/public/icon3.png" alt="Dialecta Logo" width="50" height="50"> Dialecta - Cultural Dialect Translator
+
 _________________________________________________________________________________
 | Sr.No |        NAME         |           EMAIL ID           |      ROLE       |
 |-------|---------------------|------------------------------|-----------------|
