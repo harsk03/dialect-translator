@@ -1,5 +1,15 @@
 # 🌍 Cultural Dialect Translator
 
+_________________________________________________________________________________________________
+| Sr.No |        NAME         |     PHONE      |           EMAIL ID           |      ROLE       |
+|-------|---------------------|----------------|------------------------------|-----------------|
+| 1     | Prof. Suja Panicker | +91 8788183889 | Suja.panickar@mitwpu.edu.in  | Faculty Mentor  |
+| 2     | Shruti Ramdurg      | +91 9322068711 | 1032222376@mitwpu.edu.in     | Team Leader     |
+| 3     | Divyanshi Singh     | +91 9403855407 | 1032222294@mitwpu.edu.in     | Team Member 1   |
+| 4     | Harshal Kale        | +91 7719846202 | 1032222441@mitwpu.edu.in     | Team Member 2   |
+| 5     | Om Surana           | +91 7276480691 | 1032222255@mitwpu.edu.in     | Team Member 3   |
+_________________________________________________________________________________________________
+
 ## 📝 Overview
 **Cultural Dialect Translator** is an advanced AI-powered application designed to bridge the gap between standard languages and their regional dialects. Unlike traditional translation tools, our system considers linguistic variations, contextual meanings, and cultural nuances to provide accurate and meaningful translations.
 
