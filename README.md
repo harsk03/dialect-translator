@@ -1,5 +1,4 @@
-# 🌍 Cultural Dialect Translator
-
+# ![Dialecta Logo](frontend/public/icon2.png) Dialecta - Cultural Dialect Translator
 _________________________________________________________________________________
 | Sr.No |        NAME         |           EMAIL ID           |      ROLE       |
 |-------|---------------------|------------------------------|-----------------|
