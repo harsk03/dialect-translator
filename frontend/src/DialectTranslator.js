@@ -14,6 +14,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import VoiceRecognition from './VoiceRecognition';
 
 
 function App() {
@@ -98,6 +99,13 @@ function App() {
   
   const toggleDialectInfo = () => {
     setShowDialectInfo(!showDialectInfo);
+  };
+  
+
+  // Audio
+  const handleVoiceTranscript = (transcript) => {
+    // Set the input text when voice transcript is received
+    setInputText(transcript);
   };
 
   return (
@@ -260,6 +268,11 @@ function App() {
         
         <div className="bottom-actions">
           <div className="action-button">
+            <VoiceRecognition 
+              language={sourceLanguage}
+              onTranscript={handleVoiceTranscript}
+              theme={theme}
+            />
             <MicIcon />
             <span>Voice</span>
           </div>
