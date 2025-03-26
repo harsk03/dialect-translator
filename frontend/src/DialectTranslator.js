@@ -56,12 +56,43 @@ function App() {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const handleTranslate = () => {
-    // This would connect to your NLP backend
-    if (inputText) {
-      setOutputText(`Translated from ${sourceLanguage} (${sourceDialect}) to ${targetLanguage} (${targetDialect}): "${inputText}"`);
-    } else {
+  const handleTranslate = async () => {
+    if (!inputText) {
       setOutputText('');
+      return;
+    }
+  
+    try {
+      console.log('Translation Request:', {
+        sourceLanguage,
+        targetLanguage,
+        text: inputText
+      });
+  
+      const response = await fetch('http://localhost:5000/api/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sourceLanguage,
+          targetLanguage,
+          text: inputText
+        })
+      });
+  
+      const data = await response.json();
+      console.log('Translation Response:', data);
+  
+      if (data.success) {
+        setOutputText(data.translation);
+      } else {
+        // Fallback message if translation not found
+        setOutputText(`No translation found for "${inputText}" from ${sourceLanguage} to ${targetLanguage}`);
+      }
+    } catch (error) {
+      console.error('Translation error:', error);
+      setOutputText('Translation service is unavailable');
     }
   };
   
