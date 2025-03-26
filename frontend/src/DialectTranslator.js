@@ -1,7 +1,9 @@
 // DialectTranslator.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import './WorkInProgressMessage.css';
+import HomeIcon from '@mui/icons-material/Home';
+// import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MicIcon from '@mui/icons-material/Mic';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
@@ -12,7 +14,8 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LanguageIcon from '@mui/icons-material/Language';
+import VoiceRecognition from './VoiceRecognition';
+
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -24,6 +27,8 @@ function App() {
   const [targetDialect, setTargetDialect] = useState('Standard');
   const [showDialectInfo, setShowDialectInfo] = useState(false);
   const [copyTooltip, setCopyTooltip] = useState('Copy');
+  // eslint-disable-next-line
+  const [showMessage, setShowMessage] = useState(true);
   
   const languages = [
     { name: 'Hindi', dialects: ['Standard', 'Bhojpuri'] },
@@ -95,15 +100,50 @@ function App() {
   const toggleDialectInfo = () => {
     setShowDialectInfo(!showDialectInfo);
   };
+  
+
+  // Audio
+  const handleVoiceTranscript = (transcript) => {
+    // Set the input text when voice transcript is received
+    setInputText(transcript);
+  };
 
   return (
     <div className="App">
+      
+      {/* Progress Message Bubble*/}
+      <div className={`progress-message ${theme} ${!showMessage ? 'hidden' : ''}`}>
+        
+      <div className="progress-message-content">
+  <div className="progress-indicator">
+    <div className="pulse-dot"></div>
+    <div className="pulse-dot"></div>
+    <div className="pulse-dot"></div>
+  </div>
+  <div className="progress-text">
+    <h3>Development in Progress</h3>
+    <p>Our team is refining dialect translation models to ensure optimal accuracy. Thank you for your patience.</p>
+  </div>
+  <div className="progress-actions">
+    <button className="home-button" onClick={() => window.location.href = '/home'}>
+      <HomeIcon className="home-icon" />
+      Home
+    </button>
+  </div>
+  {/* <div className="progress-close">
+    <CloseIcon 
+      className="close-icon" 
+      onClick={() => setShowMessage(false)} 
+    />
+  </div> */}
+</div>
+      </div>
+
       <div className={`phone-container ${theme}`}>
         <div className="app-header">
-          <BookmarkBorderIcon className="icon" />
+          {/* <BookmarkBorderIcon className="icon" /> */}
           <span className="app-title">
-            <LanguageIcon style={{ marginRight: '8px' }} /> 
-            Dialect Translator
+            <img src="/icon2.ico" alt="Icon" style={{ width: '38px', height: '38px', marginRight: '14px' }} />   Dialect Translator
           </span>
           <div className="right-icons">
             <div className="theme-toggle" onClick={toggleTheme}>
@@ -228,6 +268,11 @@ function App() {
         
         <div className="bottom-actions">
           <div className="action-button">
+            <VoiceRecognition 
+              language={sourceLanguage}
+              onTranscript={handleVoiceTranscript}
+              theme={theme}
+            />
             <MicIcon />
             <span>Voice</span>
           </div>
@@ -251,6 +296,7 @@ function App() {
           </div>
         )}
       </div>
+
     </div>
   );
 }

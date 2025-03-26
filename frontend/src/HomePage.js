@@ -17,7 +17,7 @@ const HomePage = ({ section }) => {
     {
       id: 1,
       name: "Shruti Ramdurg",
-      role: "Role",
+      role: "Project Lead",
       bio: "BIO",
       image: "/images/dev1.jpg",
       socials: { github: "https://github.com/shrutiramdurg", linkedin: "https://linkedin.com/in/shrutiramdurg" }
@@ -344,7 +344,7 @@ useEffect(() => {
             <h4>Contact Us</h4>
             <ul className="contact-info">
               <li>contact@dialecttranslator.com</li>
-              <li>+91 XXXXX XXXXX</li>
+              <li>+91 77198 46202</li>
               <li>Pune, India</li>
             </ul>
           </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LanguageIcon from '@mui/icons-material/Language';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import PersonIcon from '@mui/icons-material/Person';
@@ -83,8 +82,7 @@ function LoginSignup() {
         <div className={`phone-container ${theme}`}>
           <div className="app-header">
             <div className="app-title">
-              <LanguageIcon style={{ marginRight: '8px' }} /> 
-              Dialect Translator
+              <img src="/icon2.ico" alt="Icon" style={{ width: '35px', height: '35px', marginRight: '14px' }} />   Dialect Translator  
             </div>
             <div className="theme-toggle" onClick={toggleTheme}>
               {theme === 'dark' ? <LightModeIcon className="icon" /> : <DarkModeIcon className="icon" />}
