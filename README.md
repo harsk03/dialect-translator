@@ -3,11 +3,10 @@
 _________________________________________________________________________________
 | Sr.No |        NAME         |           EMAIL ID           |      ROLE       |
 |-------|---------------------|------------------------------|-----------------|
-| 1     | Prof. Suja Panicker | Suja.panickar@mitwpu.edu.in  | Faculty Mentor  |
-| 2     | Shruti Ramdurg      | 1032222376@mitwpu.edu.in     | Team Leader     |
-| 3     | Divyanshi Singh     | 1032222294@mitwpu.edu.in     | Team Member 1   |
-| 4     | Harshal Kale        | 1032222441@mitwpu.edu.in     | Team Member 2   |
-| 5     | Om Surana           | 1032222255@mitwpu.edu.in     | Team Member 3   |
+| 1     | Shruti Ramdurg      | 1032222376@mitwpu.edu.in     | Team Leader     |
+| 2     | Divyanshi Singh     | 1032222294@mitwpu.edu.in     | Team Member 1   |
+| 3     | Harshal Kale        | 1032222441@mitwpu.edu.in     | Team Member 2   |
+| 4     | Om Surana           | 1032222255@mitwpu.edu.in     | Team Member 3   |
 _________________________________________________________________________________
 
 ## 📝 Overview
